@@ -3,10 +3,12 @@ import TodoList from "./TodoList";
 import AddToDoForm from "./AddToDoForm";
 
 function App() {
+  const [newTodo, setNewTodo] = React.useState("");
   return (
     <div>
       <h1>To-do list</h1>
-      <AddToDoForm />
+      <AddToDoForm onAddTodo={setNewTodo} />
+      <p>{newTodo}</p>
       <hr />
       <TodoList />
     </div>
