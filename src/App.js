@@ -20,12 +20,12 @@ function App() {
     setTodoList([...todoList, newTodo]);
   }
   return (
-    <div>
+    <>
       <h1>To-do list</h1>
       <AddToDoForm onAddTodo={addTodo} />
       <hr />
       <TodoList todoList={todoList} />
-    </div>
+    </>
   );
 }
 
