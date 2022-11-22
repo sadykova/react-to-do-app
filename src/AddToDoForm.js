@@ -1,17 +1,29 @@
 import React from "react";
 
-function AddToDoForm(props) {
-  function handleAddTo(event) {
+function AddToDoForm({ onAddTodo }) {
+  const [todoTitle, setTodoTitle] = React.useState("");
+
+  function handleTitleChange(event) {
+    const newTodoTitle = event.target.value;
+    setTodoTitle(newTodoTitle);
+  }
+
+  function handleAddTodo(event) {
     event.preventDefault();
-    let todoTitle = event.target.title.value;
-    props.onAddTodo(todoTitle);
+    onAddTodo({ title: todoTitle, id: Date.now() });
     console.log(todoTitle);
-    event.target.reset();
+    setTodoTitle("");
   }
   return (
-    <form onSubmit={handleAddTo}>
+    <form onSubmit={handleAddTodo}>
       <label htmlFor="toDoTitle">Title</label> <br />
-      <input type="text" id="toDoTitle" name="title" />
+      <input
+        value={todoTitle}
+        onChange={handleTitleChange}
+        type="text"
+        id="toDoTitle"
+        name="title"
+      />
       <button type="submit">Add</button>
     </form>
   );
