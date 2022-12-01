@@ -1,6 +1,6 @@
 import React from "react";
 import TodoList from "./TodoList";
-import AddToDoForm from "./AddTodoForm";
+import AddTodoForm from "./AddTodoForm";
 
 function useSemiPersistentState() {
   const [todoList, setTodoList] = React.useState(
@@ -22,7 +22,7 @@ function App() {
   return (
     <>
       <h1>To-do list</h1>
-      <AddToDoForm onAddTodo={addTodo} />
+      <AddTodoForm onAddTodo={addTodo} />
       <hr />
       <TodoList todoList={todoList} />
     </>
