@@ -1,6 +1,6 @@
 import React from "react";
 import TodoList from "./TodoList";
-import AddToDoForm from "./AddToDoForm";
+import AddTodoForm from "./AddTodoForm";
 
 function useSemiPersistentState() {
   const [todoList, setTodoList] = React.useState(
@@ -19,12 +19,18 @@ function App() {
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
   }
+
+  function removeTodo(id) {
+    const newTodoList = todoList.filter((item) => item.id !== id);
+    setTodoList(newTodoList);
+  }
+
   return (
     <>
       <h1>To-do list</h1>
-      <AddToDoForm onAddTodo={addTodo} />
+      <AddTodoForm onAddTodo={addTodo} />
       <hr />
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
     </>
   );
 }
