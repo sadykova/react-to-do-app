@@ -19,12 +19,12 @@ function App() {
       )
     ).then((result) => {
       setTodoList(result.data.todoList);
+      setIsLoading(false);
     });
-    setIsLoading(false);
   }, []);
 
   React.useEffect(() => {
-    if (isLoading == false) {
+    if (!isLoading) {
       localStorage.setItem("savedTodoList", JSON.stringify(todoList));
     }
   }, [todoList]);
@@ -43,7 +43,11 @@ function App() {
       <h1>To-do list</h1>
       <AddTodoForm onAddTodo={addTodo} />
       <hr />
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      {isLoading ? (
+        <p>Loading ...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
     </>
   );
 }
